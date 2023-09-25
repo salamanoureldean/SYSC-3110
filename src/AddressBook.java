@@ -8,14 +8,14 @@ public class AddressBook{
         buddyList = new ArrayList<>();
     }
 
-    public void addBuddy(BuddyInfo buddy) {
-        if (buddy != null) {
+    public void addBuddy(BuddyInfo buddy){
+        if (buddy != null){
             buddyList.add(buddy);
         }
     }
 
     public BuddyInfo removeBuddy(int index){
-        if(index >= 0 && index < buddyList.size()){
+        if (index >= 0 && index < buddyList.size()){
             return buddyList.remove(index);
         }
         return null;
@@ -25,11 +25,22 @@ public class AddressBook{
         return buddyList;
     }
 
+    public String findPhoneNumber(String name){
+        for(BuddyInfo buddy: buddyList){
+            if(buddy.getName().equals(name)){
+                return buddy.getPhoneNumber();
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args){
         System.out.println("Address Book");
-        BuddyInfo buddy = new BuddyInfo("Tom", "Carleton", "613");
+        BuddyInfo buddy = new BuddyInfo("Tom", "Carleton", "613-876-9876");
         AddressBook addressBook = new AddressBook();
         addressBook.addBuddy(buddy);
-        addressBook.removeBuddy(1);
+        String number = addressBook.findPhoneNumber("Tom");
+        System.out.println(number);
+        addressBook.removeBuddy(0);
     }
 }
